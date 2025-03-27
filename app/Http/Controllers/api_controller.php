@@ -30,20 +30,15 @@ class api_controller extends Controller
 
     public function show(Request $request)
     {
-        // Ambil path dari query parameter
         $path = $request->query('path');
     
-        // Validasi: Pastikan path tidak kosong dan merupakan string
         if (!$path || !is_string($path)) {
             abort(400, "Invalid path provided");
         }
     
-        // Gabungkan dengan base API
         $apiUrl = $path;
 
-        //dd($apiUrl);
     
-        // Ambil data dari API
         $response = Http::get($apiUrl);
         
         if ($response->failed()) {
